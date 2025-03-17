@@ -1,0 +1,55 @@
+.gradient-bg {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #17153B, #2E236C, #433D8B);
+  transition: background 0.3s ease;
+  padding: 1rem; /* Added padding for better layout */
+}
+
+.headtext {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: white;
+  padding: 0 1rem;
+  line-height: 1.2;
+  white-space: normal; /* Ensure natural line breaks */
+}
+
+.paratext {
+  font-size: 1.25rem;
+  color: white;
+  padding: 0 1rem;
+  max-width: 800px;
+  line-height: 1.5;
+  white-space: normal; /* Ensure natural line breaks */
+}
+
+.char,
+.word {
+  display: inline-block;
+  white-space: nowrap; /* Prevent breaking within spans */
+}
+
+@media (max-width: 768px) {
+  .headtext {
+    font-size: 2rem;
+  }
+  .paratext {
+    font-size: 1rem;
+  }
+  
+  } 
+@media (max-width: 768px) {
+  .headtext {
+    font-size: 2rem;
+  }
+  
+  
+  } 
+  @media (max-width: 488px) {
+    .headtext {
+      font-size: 25px;
+    }
+    
+  
+  }
