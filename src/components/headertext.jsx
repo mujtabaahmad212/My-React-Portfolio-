@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Headertext.css';
 
-// Register ScrollTrigger
+
 gsap.registerPlugin(ScrollTrigger);
 
 const HeaderText = () => {
