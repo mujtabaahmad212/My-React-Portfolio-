@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import React, { useRef } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as  Link } from "react-router-dom";
 import "./Navbar.css"
 const Navbar = () => {
   const navbarRef = useRef(null);
