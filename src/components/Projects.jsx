@@ -12,39 +12,41 @@ import techshopimg from "../assets/images/projects img/techshopimg.png";
 import ecommerce from "../assets/video/ecommerce.mp4"
 import starimg from "../assets/images/projects img/icons8-star-50.png"
 
+
 const Projects = () => {
   const projectsRef = useRef(null);
   const reactProjectsRef = useRef(null);
 
   useEffect(() => {
-    // HTML/CSS/JS Projects animation
-    gsap.utils.toArray(".project-card").forEach((card) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    // HTML/CSS/JS Projects
+  gsap.utils.toArray(".project-card").forEach((card, index) => {
+    gsap.from(card, {
+      opacity: 0,
+      x: index % 2 === 0 ? -100 : 100, // alternate left/right
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
     });
+  });
 
-    // React Projects animation and tilt effect
-    gsap.utils.toArray(".react-project-card").forEach((card) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
+  // React Projects
+  gsap.utils.toArray(".react-project-card").forEach((card) => {
+    gsap.from(card, {
+      opacity: 0,
+      y: 100,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+    });
+ 
 
       const card3d = card.querySelector('.card-3d');
       
@@ -160,7 +162,7 @@ const Projects = () => {
       {/* HTML/CSS/JS Projects Section */}
       <section className="projects" id="projects" ref={projectsRef}>
         <div className="projects-container">
-          <h1>HTML/CSS/JS Projects</h1>
+          <h1 >HTML/CSS/JS Projects</h1>
           <div className="projects-grid">
             {htmlCssJsProjects.map((project, index) => (
               <div

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import manimg from '../assets/images/me.jpg'; // Your image import
+import manimg from '../assets/images/mypic1.jpg'; // Your image import
 import './home.css';
 
 const InteractiveImage = () => {
@@ -80,7 +80,7 @@ const InteractiveImage = () => {
       <img ref={imageRef} src={manimg} className="manimg" alt="manimg" />
       <div className=" text-container">
       <h1  className="manname">
-      <span>MUJTABA</span> <span>AHMAD</span>
+      {/* <span>MUJTABA</span> <span>AHMAD</span> */}
     </h1>
       </div>
     </div>

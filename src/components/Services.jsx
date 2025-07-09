@@ -1,16 +1,18 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ServiceSection.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ServiceSection = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
-  
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     const cards = cardsRef.current;
 
-    // Initial animation for section entrance
     gsap.from(section, {
       opacity: 0,
       y: 80,
@@ -22,93 +24,86 @@ const ServiceSection = () => {
       },
     });
 
-    // Card animations with mouse interaction
-    cards.forEach((card, index) => {
-      // Staggered entrance animation
-      gsap.from(card, {
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        delay: index * 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 90%',
-        },
-      });
+    const listeners = [];
 
-      // Mouse hover animation with rotation
-      card.addEventListener('mouseenter', () => {
+    cards.forEach((card, index) => {
+      if (!card) return;
+
+    gsap.from(card, {
+  opacity: 0,
+  y: 40,
+  scale: 0.95,
+  filter: "blur(5px)",
+  duration: 0.8,
+  delay: index * 0.15,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: card,
+    start: 'top 85%',
+  },
+});
+
+
+      const onMouseEnter = () => {
         gsap.to(card, {
           scale: 1.03,
-          rotation: 2, // Added rotation back
-          boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+          rotation: 2,
+          boxShadow: '0 20px 40px rgba(0,0,0,0.40)',
           duration: 0.3,
           ease: 'power2.out',
         });
-      });
+      };
 
-      card.addEventListener('mouseleave', () => {
+      const onMouseLeave = () => {
         gsap.to(card, {
           scale: 1,
-          rotation: 0, // Reset rotation
+          rotation: 0,
+          rotationX: 0,
+          rotationY: 0,
           boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
           duration: 0.3,
           ease: 'power2.out',
         });
-      });
+      };
 
-      // Mouse move tilt effect
-      card.addEventListener('mousemove', (e) => {
+      const onMouseMove = (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
         gsap.to(card, {
           rotationY: (x - rect.width / 2) * 0.02,
           rotationX: -(y - rect.height / 2) * 0.02,
           duration: 0.4,
           ease: 'power2.out',
         });
-      });
+      };
 
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          rotationY: 0,
-          rotationX: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-        });
-      });
+      card.addEventListener('mouseenter', onMouseEnter);
+      card.addEventListener('mouseleave', onMouseLeave);
+      card.addEventListener('mousemove', onMouseMove);
+
+      listeners.push({ card, onMouseEnter, onMouseLeave, onMouseMove });
     });
 
-    // Cleanup event listeners
     return () => {
-      cards.forEach((card) => {
-        card.removeEventListener('mouseenter', () => {});
-        card.removeEventListener('mouseleave', () => {});
-        card.removeEventListener('mousemove', () => {});
+      listeners.forEach(({ card, onMouseEnter, onMouseLeave, onMouseMove }) => {
+        if (card) {
+          card.removeEventListener('mouseenter', onMouseEnter);
+          card.removeEventListener('mouseleave', onMouseLeave);
+          card.removeEventListener('mousemove', onMouseMove);
+        }
       });
+
+      // Also kill all scrollTriggers related to this component on unmount
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   const services = [
-    {
-      title: 'Custom Website Design',
-      description: 'Modern and responsive designs that align with your brand identity.',
-    },
-    {
-      title: 'React Development',
-      description: 'Scalable and dynamic front-end applications with optimized performance.',
-    },
-    {
-      title: 'GSAP Animations',
-      description: 'Smooth and engaging animations for a unique user experience.',
-    },
-    {
-      title: 'Landing Pages & UI Components',
-      description: 'High-converting pages with pixel-perfect UI.',
-    },
+    { title: 'Custom Website Design', description: 'Modern and responsive designs that align with your brand identity.' },
+    { title: 'React Development', description: 'Scalable and dynamic front-end applications with optimized performance.' },
+    { title: 'GSAP Animations', description: 'Smooth and engaging animations for a unique user experience.' },
+    { title: 'Landing Pages & UI Components', description: 'High-converting pages with pixel-perfect UI.' },
   ];
 
   return (

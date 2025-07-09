@@ -5,11 +5,11 @@
 }
 
 .projects {
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #1c1c1c, #0f0f0f, #333333);
 }
 
 .react-projects {
-  background: #ffffff;
+  background: #111111;
 }
 
 .projects-container,
@@ -24,7 +24,7 @@
   text-align: center;
   margin-bottom: 60px;
   font-size: 2.5rem;
-  color: #333;
+  color: #ffffff;
 }
 
 .projects-grid,
@@ -47,12 +47,13 @@
   width: 20px;
   z-index: 10;
 }
-.video-card-3d{
+
+.video-card-3d {
   position: relative;
   width: 100%;
   height: 96vh;
- 
 }
+
 .card-3d {
   position: relative;
   width: 100%;
@@ -61,12 +62,10 @@
   transition: transform 0.6s;
 }
 
-/* HTML/CSS/JS Projects Hover Effect */
 .project-card:hover .card-3d {
   transform: rotateY(180deg);
 }
 
-/* React Projects Video Styling */
 .react-project-card .card-front video {
   width: 100%;
   height: 100%;
@@ -83,7 +82,7 @@
   backface-visibility: hidden;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .card-front {
@@ -98,14 +97,14 @@
 
 .card-back {
   transform: rotateY(180deg);
-  background: #fff;
+  background: #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .react-project-card .card-back {
-  background: #f0f4f8;
+  background: #2a2a2a;
 }
 
 .project-info {
@@ -116,12 +115,12 @@
 .project-info h2 {
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #333;
+  color: #ffffff;
 }
 
 .project-info p {
   font-size: 1rem;
-  color: #666;
+  color: #cccccc;
   margin-bottom: 20px;
 }
 
@@ -157,7 +156,47 @@
 }
 
 .blue-bg .card-back {
-  background: #e3f2fd;
+  background: #333333;
+}
+
+.floating-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-icon {
+  position: absolute;
+  width: 40px;
+  opacity: 0.2;
+  user-select: none;
+  animation: float 10s infinite linear, rotate 20s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
 }
 
 @media (max-width: 768px) {
@@ -175,24 +214,25 @@
   .projects-grid,
   .react-projects-grid {
     grid-template-columns: 1fr;
-    
-    
   }
 
   .card-3d {
     height: 274px;
   }
-  .video-card-3d{
-    height: auto;
-    /* margin-bottom: 20px; */
-  }
-  .card-front{
+
+  .video-card-3d {
     height: auto;
   }
-  .react-project-card{
+
+  .card-front {
     height: auto;
   }
+
+  .react-project-card {
+    height: auto;
+  }
+
   .react-project-card .card-front video {
-    height: 50vh; /* adjusted for mobile */
+    height: 50vh;
   }
 }

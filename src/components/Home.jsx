@@ -1,43 +1,39 @@
-
 import React from "react";
-
-import Navbar from "./Navbar";
-
-import './home.css';
-
-import InteractiveImage from "./InteractiveImage"
-import ClickSpark from './ClickSpark'
-
-
-
-
-
-
-
+import "./home.css";
+import InteractiveImage from "./InteractiveImage";
+import ClickSpark from "./ClickSpark";
+import TextPressure from "./TextPressure";
+import Spline from '@splinetool/react-spline';
 
 const Home = () => {
   return (
-    <div className="absolute h-[100vh]  w-[100%] hide-scrollbar">
-     <ClickSpark />
-      <Navbar className="navbari       " />
-    
+  <>
+  
+    <div className="homediv relative w-[100vw] h-screen hide-scrollbar">
+    <Spline scene="https://prod.spline.design/VfTYhn3cxv4aIlrv/scene.splinecode" />
 
+      {/* <div className="">
+        <InteractiveImage />
+      </div> */}
 
-{/* bg image */}
-      <div className="z-20 herobg ">  
-      
+      {/* <div className="">
+        <TextPressure
+          text="mujtaba-ahmad"
+          flex={true}
+          alpha={false}
+          stroke={false}
+          width={true}
+          weight={true}
+          italic={false}
+          textColor="#ffffff"
+          strokeColor="orange"
+          minFontSize={56}
+        />
+      </div> */}
 
-        <InteractiveImage className="InteractiveImage"/>
-
-
-      
-      </div>
-
-
-
-
-    
+      <ClickSpark />
     </div>
+    </>
   );
 };
 

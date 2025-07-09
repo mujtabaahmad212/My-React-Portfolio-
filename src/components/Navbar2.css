@@ -1,0 +1,134 @@
+:root {
+  --lg-bg-color: rgba(239, 239, 239, 0.854);
+  --lg-highlight: rgba(255, 255, 255, 0.75);
+  --lg-shadow: rgba(0, 0, 0, 0.2);
+  --lg-text: #333;
+}
+.navbar-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+   
+    /* background-color: aliceblue; */
+}
+
+.navbar2 {
+  width:100px ;
+  height: 40px;
+  position: fixed;
+  background-color: #ffffff1e;
+  z-index: 1;
+  top: 10px;
+  backdrop-filter: blur(3px) saturate(150%);
+  padding: 0.35rem 1.5rem;
+  box-shadow: inset 1px 1px 2px var(--lg-highlight), inset 0 0 5px var(--lg-highlight);
+  display: flex;
+
+  align-items: center;
+  overflow: hidden;
+  border-radius: 2rem;
+ 
+
+
+}
+
+.navbar2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  box-shadow: inset 1px 1px 2px var(--lg-highlight), inset 0 0 5px var(--lg-highlight);
+  pointer-events: none;
+}
+
+.mylogo {
+  text-wrap: nowrap;
+  text-align: center;
+  color: var(--lg-text);
+  text-decoration: none;
+}
+
+.navmanu2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  justify-content: center;
+}
+
+.menubutton2 {
+  background-color: rgba(229, 229, 229, 0.133);
+  height: auto;
+  cursor: pointer;
+  border-radius: 1rem;
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  color: white;
+   
+  mix-blend-mode: difference;
+  backdrop-filter: blur(3px) saturate(150%);
+  padding: 0.35rem 1.5rem;
+  box-shadow: inset 1px 1px 2px var(--lg-highlight), inset 0 0 5px var(--lg-highlight);
+}
+.menubutton2:hover {
+  transition: 0.3s ease-in-out;
+  color: black;
+}
+
+.ulnav {
+  background-color: rgba(236, 236, 236, 0.107);
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 70%;
+  position: fixed;
+  top: 50px;
+
+   color: white;
+  /* mix-blend-mode: ; */
+  border-radius: 1rem;
+  backdrop-filter: blur(5px) saturate(200%);
+  padding: 0.35rem 1.5rem;
+  box-shadow: inset 1px 1px 2px var(--lg-highlight), inset 0 0 5px var(--lg-highlight);
+  transition:0.3s ease-in-out;
+}
+.ulnav li:hover{
+    transition:0.3s ease-in-out;
+color: black;}
+
+.navContact2 {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  text-wrap: nowrap;
+  text-align: center;
+  color: var(--lg-text);
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lg-bg-color: rgba(50, 50, 50, 0.3);
+    --lg-text: #fff;
+    --lg-highlight: rgba(200, 200, 200, 0.5);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .navbar2 {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(239, 239, 239, 0.828);
+  }
+}

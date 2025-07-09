@@ -1,4 +1,186 @@
-.sec-contact {
+* {
+  margin: 0;
+  padding: 0;
+    line-height: 1;
+    scroll-behavior: smooth;
+}
+@font-face {
+  font-family: "KUBO";
+  src: url(../assets/fonts/KUBO.otf);
+}
+@font-face {
+  font-family: "first";
+  src: url(../assets/fonts/first.ttf);
+}
+@font-face {
+  font-family: "ProstoOne-Regular";
+  src: url(../assets/fonts/ProstoOne-Regular.ttf);
+}
+@font-face {
+  font-family: "first";
+  src: url(../assets/fonts/first.ttf);
+}
+
+.main {
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  height: 100vh;
+ 
+}
+.connect{
+  height: 90vh;
+  }
+.contact2 {
+ background: linear-gradient(180deg, #f44e00, #fa7300);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+ /* width: 100%; */
+
+
+
+text-align: center;
+
+
+  font-size: 16rem; /*taking fuul width*/
+  margin-bottom: 40px;
+}
+.contactmeon {
+  font-size: 1rem;
+  word-spacing: 4px;
+  letter-spacing: 2px;
+  margin-left: 20px;
+  color: rgba(240, 248, 255, 0.436);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-bottom: 32px;
+
+
+}
+
+.sociallinks2 a{
+font-size: 3rem;
+display: inline-flex;
+  line-height: 1;
+color: #f6f6f6;
+  transition:0.9s;
+margin: 0px 15px;
+}
+
+.sociallinks2 a:hover{
+  color: #f44e00;
+  transition:0.9s;
+  font-size: 3.5rem;
+  margin-left: 10px;
+}
+
+
+/* section b */
+
+.main-call{
+  width: 100%;
+  background-color: #882b00;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ background:url(../assets/images/chatbg.png);
+
+  
+}
+.bookCall{
+     padding: 2rem;
+    background: rgba(45, 45, 45, .349);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+  
+}
+.bookCallp1{
+  font-size: .7rem;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  color: #f44e00;
+  font-weight: bolder;
+  line-height: 1.8;
+  letter-spacing: .4rem;
+  font-family: ProstoOne-Regular;
+  margin-bottom: 20px ;
+}
+
+.bookCallh1{
+     color: white;
+     font-size: 35.2px;
+     font-weight: 100;
+     line-height: 31.68px;
+  
+     text-transform: uppercase;
+     font-family: ProstoOne-Regular;
+}
+.bookCallp2{
+ color: white;
+     font-size: 15.2px;
+     font-weight: 100;
+     width: 60%;
+     line-height: 31.68px;
+    
+     text-transform: uppercase;
+     font-family: ProstoOne-Regular;
+}
+
+.bookwa{
+  color: white;
+     font-size: 16px;
+     font-weight: 700;
+
+     
+     
+     text-transform: uppercase;
+     font-family: ProstoOne-Regular;
+     background-color: #f44e00;
+     width: 183.8px;
+    padding: 22px 16px;
+    /* height: 55.0375px; */
+    border-radius: 8px;
+
+margin-top: 20px;
+
+background-clip: border-box;
+background-size: auto;
+box-shadow: 0px 20px 20px 0px rgba(255,255,255,0.2) inset;
+}
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.sec-contact {
   padding: 4rem 2rem;
   background: #f9f9f9;
   min-height: 100vh;
@@ -51,7 +233,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   width: 50%;
-  /* max-width: 300px; */
+ 
 }
 
 .phone-icon, .email-icon, .address-icon {
@@ -104,4 +286,4 @@
   .contact-header h1 p {
     font-size: 1.2rem;
   }
-}
+} */

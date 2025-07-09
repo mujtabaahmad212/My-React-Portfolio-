@@ -1,130 +1,156 @@
 /* AboutMe.css */
 .about-me {
-  padding: 50px 20px;
-  background-color: #f9f9f9;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #000000, #ff5e00);
   min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f5f5f5;
 }
 
 .about-container {
-  /* max-width: 900px; */
-  margin: 0 auto;
-  background-color: #fbfbe4;
-  width: 90%;
-  padding: 20px;
-  border-radius: 3rem;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.424);
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 2rem;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
-h1 {
+.aboutmeh1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 40px;
+  font-size: 3rem;
+  color: #ffa726;
+  margin-bottom: 10px;
+}
+
+.about-container p.subtitle {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
 }
 
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
 }
 
 .profile-section {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 100px;
 }
 
 .profile-img {
-  width: 200px;
-  height: 200px;
-
-  border-radius: 2rem;
-  filter: drop-shadow(5px -2px 10px rgba(0, 0, 0, 0.389));
-  
-
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
+
+  box-shadow: 0 4px 20px rgba(237, 175, 6, 0.81);
+  margin-bottom: 15px;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  border: 3px solid #ff9800;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  backface-visibility: hidden;
 }
 
 .profile-img:hover {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1);
+}
+
+.profile-section h2 {
+  margin: 10px 0 5px;
+  font-size: 1.8rem;
+  color: #fff;
 }
 
 .title {
-  color: #666;
   font-style: italic;
+  color: #ffcc80;
+  font-size: 1rem;
 }
 
 .bio-section p {
-  line-height: 1.6;
-  color: #444;
-  margin-bottom: 15px;
+  line-height: 1.7;
+  color: #ddd;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
 }
 
 .skills-section h3,
-.contact-section h3,
-.projects-section h3 {
-  color: #333;
-  margin-bottom: 15px;
+.contact-section h3 {
+  font-size: 1.5rem;
+  color: #ffa726;
+  margin-bottom: 20px;
 }
 
 .skills-list {
-  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  list-style: none;
 }
 
 .skills-list li {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  background: #212121;
+  color: #ffb74d;
+  padding: 10px 18px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: default;
+  border: 1px solid #ff9800;
 }
 
 .skills-list li:hover {
-  transform: scale(1.1) translateY(-5px);
-  background-color: #0056b3;
+  background: #ff6d00;
+  color: white;
+  transform: scale(1.05);
 }
 
-.projects-section {
-  margin-top: 20px;
-}
-
-.projects-list {
-  list-style: none;
-  padding: 0;
-}
-
-.projects-list li {
+.contact-section p {
+  font-size: 1rem;
   margin-bottom: 10px;
-}
-
-.projects-list a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.projects-list a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #ddd;
 }
 
 .contact-section a {
-  color: #007bff;
+  color: #ffb74d;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: 0.3s;
 }
 
 .contact-section a:hover {
-  color: #0056b3;
   text-decoration: underline;
+  color: #ffcc80;
 }
 
 @media (min-width: 768px) {
   .about-content {
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .profile-section {
+    flex: 1 1 30%;
+  }
+
+  .bio-section,
+  .skills-section,
+  .contact-section {
+    flex: 1 1 60%;
   }
 }
