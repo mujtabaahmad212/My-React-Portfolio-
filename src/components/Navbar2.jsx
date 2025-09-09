@@ -1,14 +1,17 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import gsap from "gsap";
+// Navbar2.jsx
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar2.css";
+import mylogo from "../assets/images/mylogo.jpeg"; // Ensure you have a logo image in the specified path
 
 const Navbar2 = () => {
-  const navbarRef = useRef(null);
-  const ulnavRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const mobileMenuRef = useRef(null);
+  const mobileMenuBtnRef = useRef(null);
 
-  const navLinks2 = [
+  const navLinks = [
     { id: 1, title: "Home", path: "/" },
     { id: 2, title: "About", path: "/about" },
     { id: 3, title: "Services", path: "/services" },
@@ -16,74 +19,147 @@ const Navbar2 = () => {
     { id: 5, title: "Contact", path: "/contact" },
   ];
 
-  const toggleMenu = () => {
-    if (!isOpen) {
-      gsap.to(navbarRef.current, { height: 100, duration: 0.3 });
-      gsap.to(navbarRef.current, { width: "60%", duration: 0.4, delay: 0.1 });
-      gsap.to(ulnavRef.current, { opacity: 1, duration: 0.2, delay: 0.3 });
-    } else {
-      closeMenu();
-    }
-    setIsOpen(!isOpen);
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(prev => !prev);
   };
 
-  const closeMenu = () => {
-    gsap.to(ulnavRef.current, { opacity: 0, duration: 0.0 });
-    gsap.to(navbarRef.current, { width: 100, duration: 0.3, delay: 0.2 });
-    gsap.to(navbarRef.current, { height: 40, duration: 0.3, delay: 0.5 });
-    setIsOpen(false);
+  // Close mobile menu
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
+  // Handle link click - close mobile menu after navigation
   const handleLinkClick = () => {
-    if (isOpen) {
-      setTimeout(() => {
-        closeMenu();
-      }, 900); // Delay in ms - adjust based on your page transition duration
-    }
+    closeMobileMenu();
   };
 
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setScrolled(scrollTop > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        isOpen &&
-        navbarRef.current &&
-        !navbarRef.current.contains(event.target)
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        mobileMenuBtnRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        !mobileMenuBtnRef.current.contains(event.target)
       ) {
-        closeMenu();
+        closeMobileMenu();
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
-
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && isMobileMenuOpen) {
+        closeMobileMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
-    <div className="navbar-container">
-      <div className="navbar2" ref={navbarRef}>
-        <div className="navmanu2">
-          <div className="menubutton2" onClick={toggleMenu}>
-            Menu
-          </div>
+    <nav className={`navbar-container ${scrolled ? 'scrolled' : ''}`}>
+      <div className="navbar2">
+        {/* Brand/Logo */}
+        <Link to="/" className="navbar-brand" onClick={handleLinkClick}>
+         <img src={mylogo} alt="" className="logo" />
+        </Link>
 
-          <ul className="ulnav" ref={ulnavRef} style={{ opacity: 0 }}>
-            {navLinks2.map((link) => (
-              <li key={link.id}>
+        {/* Desktop Navigation */}
+        <ul className="navbar-nav">
+          {navLinks.map((link) => (
+            <li key={link.id} className="nav-item">
+              <Link
+                to={link.path}
+                className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+              >
+                {link.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Contact Button (Desktop) */}
+       
+
+        {/* Mobile Menu Button */}
+        <button
+          ref={mobileMenuBtnRef}
+          className={`mobile-menu-btn ${isMobileMenuOpen ? 'open' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
+
+        {/* Mobile Navigation */}
+        <div
+          ref={mobileMenuRef}
+          className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}
+        >
+          <ul className="mobile-nav-list">
+            {navLinks.map((link, index) => (
+              <li key={link.id} className="mobile-nav-item">
                 <Link
                   to={link.path}
-                  className="bg-amber-300 text-6xl"
+                  className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
                   onClick={handleLinkClick}
                 >
                   {link.title}
                 </Link>
               </li>
             ))}
+          
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
