@@ -10,11 +10,11 @@ const Home = () => {
   <>
   
     <div className="homediv relative w-[100vw] h-screen hide-scrollbar">
-    <Spline scene="https://prod.spline.design/VfTYhn3cxv4aIlrv/scene.splinecode" />
+    {/* <Spline scene="https://prod.spline.design/VfTYhn3cxv4aIlrv/scene.splinecode" /> */}
 
-      {/* <div className="">
+      <div className="">
         <InteractiveImage />
-      </div> */}
+      </div>
 
       {/* <div className="">
         <TextPressure
