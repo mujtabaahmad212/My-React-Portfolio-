@@ -313,15 +313,7 @@ const InteractiveImage = () => {
         </div>
 
         {/* Subtitle and description */}
-        <div ref={subtitleRef} className="subtitle-wrapper">
-          <h2 className="subtitle">Full Stack Developer</h2>
-          <p className="description">Creating Digital Experiences</p>
-          <div className="accent-dots">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+       
 
         {/* Overlay effects */}
         <div ref={overlayRef} className="overlay-effects">
@@ -330,15 +322,7 @@ const InteractiveImage = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="scroll-indicator">
-        <div className="scroll-arrow">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <p>Scroll to explore</p>
-      </div>
+      
     </div>
   );
 };
