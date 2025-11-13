@@ -2,8 +2,7 @@ import React from "react";
 import "./home.css";
 import InteractiveImage from "./InteractiveImage";
 import ClickSpark from "./ClickSpark";
-import TextPressure from "./TextPressure";
-import Spline from '@splinetool/react-spline';
+
 
 const Home = () => {
   return (

@@ -1,7 +1,9 @@
+// ServiceSection.jsx
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ServiceSection.css';
+import { Code, Bot, Zap, Palmtree } from 'lucide-react'; // Import icons
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +15,8 @@ const ServiceSection = () => {
     const section = sectionRef.current;
     const cards = cardsRef.current;
 
-    gsap.from(section, {
+    // Animate the section header
+    gsap.from(section.querySelector('.service-text'), {
       opacity: 0,
       y: 80,
       duration: 1,
@@ -29,26 +32,29 @@ const ServiceSection = () => {
     cards.forEach((card, index) => {
       if (!card) return;
 
-    gsap.from(card, {
-  opacity: 0,
-  y: 40,
-  scale: 0.95,
-  filter: "blur(5px)",
-  duration: 0.8,
-  delay: index * 0.15,
-  ease: 'power3.out',
-  scrollTrigger: {
-    trigger: card,
-    start: 'top 85%',
-  },
-});
+      // Card scroll-in animation
+      gsap.from(card, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95,
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+        },
+      });
 
+      // --- Reskinned GSAP Interactions ---
 
       const onMouseEnter = () => {
         gsap.to(card, {
-          scale: 1.03,
-          rotation: 2,
-          boxShadow: '0 20px 40px rgba(0,0,0,0.40)',
+          scale: 1.03, // Keep the scale
+          rotation: 0,  // Remove the z-axis rotation, it's a bit much
+          // CHANGE: Use a neon glow, not a black shadow
+          boxShadow: '0 0 40px rgba(0, 255, 157, 0.3)', 
+          borderColor: 'var(--neon-green)', // Brighten border
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -60,7 +66,9 @@ const ServiceSection = () => {
           rotation: 0,
           rotationX: 0,
           rotationY: 0,
-          boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
+          // CHANGE: Revert to no shadow
+          boxShadow: '0 0 0 rgba(0, 0, 0, 0)', 
+          borderColor: 'var(--grid-line)', // Dim border
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -93,30 +101,42 @@ const ServiceSection = () => {
           card.removeEventListener('mousemove', onMouseMove);
         }
       });
-
-      // Also kill all scrollTriggers related to this component on unmount
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
+  // UPDATED: Added icons
   const services = [
-    { title: 'Custom Website Design', description: 'Modern and responsive designs that align with your brand identity.' },
-    { title: 'React Development', description: 'Scalable and dynamic front-end applications with optimized performance.' },
-    { title: 'GSAP Animations', description: 'Smooth and engaging animations for a unique user experience.' },
-    { title: 'Landing Pages & UI Components', description: 'High-converting pages with pixel-perfect UI.' },
+    { 
+      title: 'React Development', 
+      description: 'Scalable and dynamic front-end applications with optimized performance.',
+      icon: <Code size={40} />
+    },
+    { 
+      title: 'GSAP Animations', 
+      description: 'Smooth and engaging animations for a unique user experience.',
+      icon: <Zap size={40} />
+    },
+    { 
+      title: 'Custom Website Design', 
+      description: 'Modern and responsive designs that align with your brand identity.',
+      icon: <Palmtree size={40} /> // Using Palmtree as a placeholder for "design"
+    },
+    // { 
+    //   title: 'UI Components', 
+    //   description: 'High-converting pages with pixel-perfect, reusable UI.',
+    //   icon: <Bot size={40} /> // Using Bot as a placeholder for "components"
+    // },
   ];
 
   return (
     <div id="service" className="sec-service" ref={sectionRef}>
       <div className="service-div">
         <div className="service-text">
-          <h1>Services</h1>
+          <h1>SERVICE_MATRIX</h1>
           <p>
-            I specialize in creating stunning, fully responsive, and
-            high-performance websites that enhance user experience and
-            engagement. With expertise in HTML, CSS, JavaScript, React, and GSAP
-            animations, I build interactive and visually appealing web solutions
-            tailored to your needs.
+            // Core directives: Building high-performance, engaging, and
+            visually-striking web applications.
           </p>
         </div>
 
@@ -127,8 +147,12 @@ const ServiceSection = () => {
               className="card"
               ref={(el) => (cardsRef.current[index] = el)}
             >
+              <div className="card-icon">
+                {service.icon}
+              </div>
               <h1>{service.title}</h1>
               <p>{service.description}</p>
+              <span className="card-index">// 0{index + 1}</span>
             </div>
           ))}
         </div>

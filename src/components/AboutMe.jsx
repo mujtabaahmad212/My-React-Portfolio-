@@ -1,3 +1,4 @@
+// AboutMe.jsx
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './AboutMe.css';
@@ -11,23 +12,22 @@ const AboutMe = () => {
   const contactRefs = useRef([]);
 
   useEffect(() => {
+    // GSAP animations
     gsap.fromTo(profileImgRef.current, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.7)' });
-
     gsap.fromTo(textRefs.current, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.5 });
-
     gsap.fromTo(skillsRefs.current, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'elastic.out(1, 0.5)', delay: 1 });
-
     gsap.fromTo(contactRefs.current, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, stagger: 0.2, ease: 'power2.out', delay: 1.5 });
   }, []);
 
   useEffect(() => {
+    // GSAP 3D tilt effect
     const img = profileImgRef.current;
+    if (!img) return;
 
     const handleMouseMove = (e) => {
       const rect = img.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-
       gsap.to(img, {
         rotateX: -y / 10,
         rotateY: x / 10,
@@ -56,11 +56,32 @@ const AboutMe = () => {
     };
   }, []);
 
+  // --- Skills & Bio Data ---
+
+  const skills = [
+    // Core Development
+    "React.jsx", "JavaScript (ES6+)", "Node.js", "Express.js", 
+    "HTML5 & CSS3", "Tailwind CSS", "GSAP Animation", "Vite",
+    // Tools & Platforms
+    "Git / GitHub", "Firebase", "OJS", "Figma",
+    // Cybersecurity & OS
+    "Cybersecurity", "Kali Linux", "Linux/SysAdmin",
+    // Other Skills
+    "Video Editing", "Adobe Photoshop"
+  ];
+
+  const bio = [
+    "I am a **BS Information Technology student** (2022-2026) at The University of Agriculture, Peshawar. My primary professional focus is **Front-End Development**, where I specialize in building dynamic, responsive interfaces with React, GSAP, and Vite.",
+    "I've built a strong foundation in professional communication and time management by concurrently serving as a **Personal Assistant** at the Arfa Karim Technology Incubator and handling other remote work.",
+    "Beyond development, I am actively **learning cybersecurity** and have hands-on experience with server-side tasks and Linux. I also engage in freelance photo/video editing and have organized community events like a university eSports tournament."
+  ];
+
   return (
     <section className="about-me" ref={aboutRef}>
       <div className="about-container">
-        <h1 className='aboutmeh1'>About Me</h1>
-        <p className="subtitle">Passionate developer crafting immersive web experiences</p>
+        <h1 className='aboutmeh1'>USER_PROFILE</h1>
+        <p className="subtitle">// Authenticated as: Mujtaba Ahmad</p>
+
         <div className="about-content">
           <div className="profile-section">
             <img
@@ -70,30 +91,32 @@ const AboutMe = () => {
               className="profile-img"
             />
             <h2>Mujtaba Ahmad</h2>
-            <p className="title">Front-End Developer</p>
+            {/* UPDATED TITLE HERE */}
+            <p className="title">[ Developer | Cybersecurity Learner ]</p>
           </div>
 
           <div className="bio-section">
-            {[
-              "Hello! I'm Mujtaba Ahmad, a passionate Front-End Developer with over 1 year of experience specializing in creating responsive and user-friendly web applications.",
-              "My expertise lies in building dynamic interfaces using HTML, CSS, and JavaScript. I enjoy collaborating with teams to craft solutions that enhance user experiences.",
-              "When I’m not coding, you can find me exploring new tech trends, contributing to open-source projects, or sipping a good cup of coffee."
-            ].map((text, index) => (
-              <p key={index} ref={(el) => (textRefs.current[index] = el)}>{text}</p>
+            <h3>// BIO_LOG</h3>
+            {bio.map((text, index) => (
+              <p 
+                key={index} 
+                ref={(el) => (textRefs.current[index] = el)}
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
             ))}
           </div>
 
           <div className="skills-section">
-            <h3>Skills</h3>
+            <h3>// SKILL_MATRIX</h3>
             <ul className="skills-list">
-              {["React.js", "JavaScript", "HTML & CSS", "Responsive Design", "GSAP Animation"].map((skill, index) => (
+              {skills.map((skill, index) => (
                 <li key={index} ref={(el) => (skillsRefs.current[index] = el)}>{skill}</li>
               ))}
             </ul>
           </div>
 
           <div className="contact-section">
-            <h3>Let’s Connect!</h3>
+            <h3>// COMMS_CHANNEL</h3>
             {[
               { label: "Email", value: "mujtabaahmad4200@gmail.com", href: "mailto:mujtabaahmad4200@gmail.com" },
               { label: "LinkedIn", value: "linkedin.com/in/mujtaba-ahmad", href: "https://www.linkedin.com/in/mujtaba-ahmad-254b4625a/" },

@@ -1,109 +1,120 @@
+/* ServiceSection.css - Theme: Terminal Services Grid */
+
+:root {
+  --bg-deep: #0a0a0a;
+  --bg-panel: #111111;
+  --neon-green: #00ff9d;
+  --neon-cyan: #00f3ff;
+  --grid-line: rgba(255, 255, 255, 0.05);
+  --text-main: #e0e0e0;
+  --text-sub: #888;
+  --font-tech: 'Courier New', monospace;
+  --tech-clip: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
 .sec-service {
-  padding: 60px 15px;
-  background: linear-gradient(135deg, #0f0f0f, #1c1c1c, #2b2b2b);
+  padding: 6rem 1.5rem;
+  background-color: var(--bg-deep);
   min-height: 100vh;
-  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-tech);
+  
+  /* Background Grid */
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
 .service-div {
   max-width: 1200px;
   width: 100%;
-  padding: 40px;
-  background: rgba(30, 30, 30, 0.8);
-  border-radius: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .service-text {
   text-align: center;
-  margin-bottom: 40px;
-  color: #ffffff;
+  margin-bottom: 4rem;
+  color: var(--text-main);
 }
 
 .service-text h1 {
-  font-size: clamp(2rem, 5vw, 2.5rem);
-  margin-bottom: 20px;
-  color: #ffa726;
-  text-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--neon-green);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .service-text p {
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
-  color: #cccccc;
-  max-width: 900px;
+  font-size: 1rem;
+  color: var(--text-sub);
+  max-width: 700px;
   margin: 0 auto;
   line-height: 1.7;
-  opacity: 0.85;
+  font-family: sans-serif; /* Readability */
 }
 
 .service-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 2rem;
 }
 
 .card {
-  background: rgba(20, 20, 20, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-  color: #fff;
+  background: var(--bg-panel);
+  border: 1px solid var(--grid-line);
+  padding: 2.5rem 2rem;
+  text-align: left;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Start with no shadow */
+  color: var(--text-main);
   transition: all 0.3s ease;
   transform-style: preserve-3d;
   cursor: pointer;
-  overflow: hidden;
   position: relative;
+  
+  /* Tech clip-path shape */
+  clip-path: var(--tech-clip);
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.02), transparent 70%);
-  transform: rotate(25deg);
-  pointer-events: none;
+.card-icon {
+  color: var(--neon-cyan);
+  margin-bottom: 1.5rem;
 }
 
 .card h1 {
-  font-size: 1.5rem;
-  color: #ffb347;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(255, 179, 71, 0.6);
+  font-size: 1.3rem;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .card p {
-  font-size: 1rem;
-  color: #dddddd;
+  font-size: 0.9rem;
+  color: var(--text-sub);
   line-height: 1.6;
+  font-family: sans-serif;
+  min-height: 80px; /* Give cards a consistent height */
 }
 
-.card:hover {
-  box-shadow: 0 15px 50px rgba(255, 165, 0, 0.3);
+/* Corner index number */
+.card-index {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  opacity: 0.5;
 }
 
 @media (max-width: 768px) {
   .sec-service {
-    padding: 40px 10px;
+    padding: 4rem 1rem;
   }
-
-  .service-cards {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-
-  .card {
-    padding: 20px;
+  .card p {
+    min-height: auto; /* Remove min-height on mobile */
   }
 }
 
@@ -111,9 +122,15 @@
   .service-cards {
     grid-template-columns: 1fr;
   }
-
   .card {
-    margin: 0 auto;
-    max-width: 320px;
+    padding: 2rem;
+    text-align: center;
+  }
+  .card-icon {
+    margin: 0 auto 1.5rem auto;
+  }
+  .card-index {
+    bottom: 1rem;
+    right: 1rem;
   }
 }

@@ -1,0 +1,50 @@
+/* src/components/Preloader.css */
+
+.preloader-container {
+  /* Positioning */
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000; /* Ensure it's on top of everything */
+
+  /* Theme */
+  background: var(--bg-deep, #0a0a0a);
+  font-family: var(--font-tech, 'Courier New', monospace);
+  
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preloader-text {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--neon-green, #00ff9d);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* This allows the text to wrap nicely on small screens */
+.preloader-text > span {
+  display: inline-block;
+}
+
+.blinking-cursor {
+  color: var(--neon-green, #00ff9d);
+  margin-left: 5px;
+}
+
+.preloader-subtext {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--text-sub, #888);
+  margin-top: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 1rem;
+}
