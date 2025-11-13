@@ -3,7 +3,8 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ServiceSection.css';
-import { Code, Bot, Zap, Palmtree } from 'lucide-react'; // Import icons
+// UPDATED: Added Palette and Video icons
+import { Code, Zap, Shield, Palette, Video } from 'lucide-react'; 
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,15 +47,14 @@ const ServiceSection = () => {
         },
       });
 
-      // --- Reskinned GSAP Interactions ---
+      // --- GSAP Interactions ---
 
       const onMouseEnter = () => {
         gsap.to(card, {
-          scale: 1.03, // Keep the scale
-          rotation: 0,  // Remove the z-axis rotation, it's a bit much
-          // CHANGE: Use a neon glow, not a black shadow
+          scale: 1.03, 
+          rotation: 0,  
           boxShadow: '0 0 40px rgba(0, 255, 157, 0.3)', 
-          borderColor: 'var(--neon-green)', // Brighten border
+          borderColor: 'var(--neon-green)', 
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -66,9 +66,8 @@ const ServiceSection = () => {
           rotation: 0,
           rotationX: 0,
           rotationY: 0,
-          // CHANGE: Revert to no shadow
           boxShadow: '0 0 0 rgba(0, 0, 0, 0)', 
-          borderColor: 'var(--grid-line)', // Dim border
+          borderColor: 'var(--grid-line)', 
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -105,28 +104,34 @@ const ServiceSection = () => {
     };
   }, []);
 
-  // UPDATED: Added icons
+  // --- UPDATED SERVICES ---
+  // Broken down from your skills list
   const services = [
     { 
-      title: 'React Development', 
-      description: 'Scalable and dynamic front-end applications with optimized performance.',
+      title: 'Web Development', 
+      description: 'Building scalable applications using React, Node.js, and Express, from the server to the client.',
       icon: <Code size={40} />
     },
     { 
-      title: 'GSAP Animations', 
-      description: 'Smooth and engaging animations for a unique user experience.',
+      title: 'Interactive UI Design', 
+      description: 'Creating smooth, engaging user experiences with GSAP animations, Tailwind CSS, and modern design tools.',
       icon: <Zap size={40} />
     },
     { 
-      title: 'Custom Website Design', 
-      description: 'Modern and responsive designs that align with your brand identity.',
-      icon: <Palmtree size={40} /> // Using Palmtree as a placeholder for "design"
+      title: 'Graphic Design', 
+      description: 'Crafting visual identities, logos, and digital assets using Adobe Photoshop and modern design principles.',
+      icon: <Palette size={40} />
     },
-    // { 
-    //   title: 'UI Components', 
-    //   description: 'High-converting pages with pixel-perfect, reusable UI.',
-    //   icon: <Bot size={40} /> // Using Bot as a placeholder for "components"
-    // },
+    { 
+      title: 'Video Editing', 
+      description: 'Producing and editing high-quality video content for marketing, portfolios, or personal projects.',
+      icon: <Video size={40} />
+    },
+    { 
+      title: 'Cybersecurity & Systems', 
+      description: 'Actively learning ethical hacking principles, system administration, and network security with Linux & Kali.',
+      icon: <Shield size={40} /> 
+    },
   ];
 
   return (
