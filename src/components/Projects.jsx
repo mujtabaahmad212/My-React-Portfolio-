@@ -5,13 +5,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import "./Projects.css";
 
 import simsImg from "../assets/images/projects img/SIMS.png";
-import todoImg from "../assets/images/projects img/todo list app.png";
-import ecommerceImg from "../assets/images/projects img/e commerce .png";
+import todoImg from "../assets/images/projects img/todo-list-app.png";
+import ecommerceImg from "../assets/images/projects img/e-commerce.png";
 import devbazmImg from "../assets/images/projects img/Devbazm.png";
-import coffeeImg from "../assets/images/projects img/coffee .png";
-import dCollectionImg from "../assets/images/projects img/D Collection.png";
-import fruitCatcherImg from "../assets/images/projects img/fruit catcher game.png";
+import coffeeImg from "../assets/images/projects img/coffee-shop.png";
+import dCollectionImg from "../assets/images/projects img/d-collection.png";
+import fruitCatcherImg from "../assets/images/projects img/fruit-catcher-game.png";
 import portfolioImg from "../assets/images/projects img/portfolio-website.png";
+
 
 const projects = [
   {

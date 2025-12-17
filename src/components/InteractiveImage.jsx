@@ -1,403 +1,244 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import manimg from '../assets/images/mypic1.jpg';
 import './InteractiveImage.css';
 
 const InteractiveImage = () => {
-  const containerRef = useRef(null);
   const imageRef = useRef(null);
-  const bigTextRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const overlayRef = useRef(null);
-  const particlesRef = useRef([]);
 
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isGlitching, setIsGlitching] = useState(false);
-  const [text1, setText1] = useState("MUJTABA");
-  const [text2, setText2] = useState("AHMAD");
+  const [displayText, setDisplayText] = useState('');
+  const [displayRole, setDisplayRole] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [dataStreams, setDataStreams] = useState([]);
 
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+";
+  const fullName = "MUJTABA AHMAD";
+  const role = "FULL STACK DEVELOPER";
 
+  // Terminal typing effect
   useEffect(() => {
-    const container = containerRef.current;
-    const image = imageRef.current;
-    const bigText = bigTextRef.current;
-    const subtitle = subtitleRef.current;
-    const overlay = overlayRef.current;
-
-    if (!container || !image || !bigText) return;
-
-    // Initial setup
-    gsap.set([container, image, bigText, subtitle], { opacity: 0 });
-    gsap.set(image, { scale: 0.8, y: 50 });
-    gsap.set(bigText, { scale: 0.9, y: 100 });
-    gsap.set(subtitle, { y: 30 });
-    gsap.set(overlay, { opacity: 0 });
-
-    // Enhanced Master timeline for page load animation
-    const masterTL = gsap.timeline({ delay: 0.3 });
-
-    // Dramatic entrance sequence
-    masterTL
-      // Container dramatic fade in
-      .to(container, {
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out"
-      })
-      // Big text dramatic rise with rotation
-      .fromTo(bigText,
-        {
-          opacity: 0,
-          scale: 0.8,
-          y: 150,
-          rotationX: 45
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          rotationX: 0,
-          duration: 1.8,
-          ease: "power4.out"
-        }, "-=0.5")
-      // Image spectacular entrance
-      .fromTo(image,
-        {
-          opacity: 0,
-          scale: 0.6,
-          y: 100,
-          rotationY: 30,
-          filter: "blur(10px)"
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          rotationY: 0,
-          filter: "blur(0px)",
-          duration: 1.5,
-          ease: "elastic.out(1, 0.8)"
-        }, "-=1.2")
-      // Subtitle elegant slide
-      .fromTo(subtitle,
-        {
-          opacity: 0,
-          y: 50,
-          scale: 0.9
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          ease: "back.out(1.7)"
-        }, "-=0.8")
-      // Final overlay smooth reveal
-      .to(overlay, {
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.4");
-
-    // Enhanced 3D mouse interaction
-    let mouseX = 0;
-    let mouseY = 0;
-    let isHovering = false;
-
-    const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      mouseX = (e.clientX - centerX) / rect.width;
-      mouseY = (e.clientY - centerY) / rect.height;
-
-      if (isHovering) {
-        // Enhanced 3D transformation with better physics
-        gsap.to(image, {
-          rotationY: mouseX * 20,
-          rotationX: -mouseY * 18,
-          x: mouseX * 25,
-          y: mouseY * 22,
-          scale: 1.1,
-          duration: 0.7,
-          ease: "power3.out"
-        });
-
-        // Big text enhanced parallax with depth
-        gsap.to(bigText, {
-          x: -mouseX * 40,
-          y: -mouseY * 25,
-          rotationY: mouseX * 8,
-          rotationX: mouseY * 3,
-          scale: 1.05,
-          duration: 1.2,
-          ease: "power3.out"
-        });
-
-        // Subtitle with magnetic effect
-        gsap.to(subtitle, {
-          x: mouseX * 18,
-          y: mouseY * 12,
-          rotationZ: mouseX * 2,
-          duration: 1.4,
-          ease: "power2.out"
-        });
-
-        // Particle interaction
-        particlesRef.current.forEach((particle, i) => {
-          if (particle) {
-            gsap.to(particle, {
-              x: mouseX * (50 + i * 10),
-              y: mouseY * (50 + i * 10),
-              duration: 1 + i * 0.1,
-              ease: "power2.out"
-            });
-          }
-        });
+    let nameIndex = 0;
+    const nameInterval = setInterval(() => {
+      if (nameIndex <= fullName.length) {
+        setDisplayText(fullName.slice(0, nameIndex));
+        nameIndex++;
+      } else {
+        clearInterval(nameInterval);
+        setTimeout(() => {
+          let roleIndex = 0;
+          const roleInterval = setInterval(() => {
+            if (roleIndex <= role.length) {
+              setDisplayRole(role.slice(0, roleIndex));
+              roleIndex++;
+            } else {
+              clearInterval(roleInterval);
+              setIsTypingComplete(true);
+            }
+          }, 50);
+        }, 200);
       }
-    };
+    }, 80);
 
-    const handleMouseEnter = () => {
-      isHovering = true;
-
-      gsap.to(image, {
-        scale: 1.12,
-        duration: 0.8,
-        ease: "power3.out"
-      });
-
-      gsap.to(bigText, {
-        scale: 1.03,
-        opacity: 0.3,
-        duration: 1,
-        ease: "power2.out"
-      });
-    };
-
-    const handleMouseLeave = () => {
-      isHovering = false;
-
-      gsap.to([image, bigText, subtitle], {
-        x: 0,
-        y: 0,
-        rotationX: 0,
-        rotationY: 0,
-        rotationZ: 0,
-        scale: 1,
-        duration: 2,
-        ease: "elastic.out(1, 0.4)"
-      });
-
-      gsap.to(bigText, {
-        opacity: 0.15,
-        duration: 1.5,
-        ease: "power2.out"
-      });
-
-      // Reset particles
-      particlesRef.current.forEach((particle) => {
-        if (particle) {
-          gsap.to(particle, {
-            x: 0,
-            y: 0,
-            duration: 2,
-            ease: "elastic.out(1, 0.4)"
-          });
-        }
-      });
-    };
-
-    // Touch support for mobile
-    const handleTouchMove = (e) => {
-      if (e.touches.length === 1) {
-        const touch = e.touches[0];
-        const rect = container.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const touchX = (touch.clientX - centerX) / rect.width;
-        const touchY = (touch.clientY - centerY) / rect.height;
-
-        gsap.to(image, {
-          rotationY: touchX * 10,
-          rotationX: -touchY * 10,
-          x: touchX * 15,
-          y: touchY * 15,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-
-        gsap.to(bigText, {
-          x: -touchX * 20,
-          y: -touchY * 15,
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      }
-    };
-
-    const handleTouchEnd = () => {
-      gsap.to([image, bigText, subtitle], {
-        x: 0,
-        y: 0,
-        rotationX: 0,
-        rotationY: 0,
-        duration: 1,
-        ease: "elastic.out(1, 0.5)"
-      });
-    };
-
-    // Event listeners
-    container.addEventListener('mousemove', handleMouseMove, { passive: true });
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
-    container.addEventListener('touchmove', handleTouchMove, { passive: true });
-    container.addEventListener('touchend', handleTouchEnd);
-
-    // Image load handler
-    const handleImageLoad = () => {
-      setIsLoaded(true);
-    };
-
-    if (image.complete) {
-      handleImageLoad();
-    } else {
-      image.addEventListener('load', handleImageLoad);
-    }
-
-    // Cleanup
-    return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-      container.removeEventListener('touchmove', handleTouchMove);
-      container.removeEventListener('touchend', handleTouchEnd);
-      image.removeEventListener('load', handleImageLoad);
-    };
+    return () => clearInterval(nameInterval);
   }, []);
 
-  // Enhanced floating animation for continuous movement
+  // Generate data streams
   useEffect(() => {
-    if (isLoaded) {
-      // Image floating with rotation
-      gsap.to(imageRef.current, {
-        y: "+=15",
-        rotation: "+=2",
-        duration: 4,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1
-      });
+    const streams = Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      delay: Math.random() * 5,
+      duration: 3 + Math.random() * 4
+    }));
+    setDataStreams(streams);
+  }, []);
 
-      // Big text subtle breathing effect
-      gsap.to(bigTextRef.current, {
-        y: "+=8",
-        scale: 1.02,
-        duration: 5,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1
-      });
+  // Image magnetic effect
+  const handleMouseMoveOnImage = (e) => {
+    if (!imageRef.current) return;
 
-      // Subtitle gentle sway
-      if (subtitleRef.current) {
-        gsap.to(subtitleRef.current, {
-          x: "+=3",
-          y: "+=2",
-          duration: 3.5,
-          ease: "power1.inOut",
-          yoyo: true,
-          repeat: -1
-        });
-      }
-    }
-  }, [isLoaded]);
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
 
-  // Text Scramble Effect
-  const scrambleText = (setText, originalText) => {
-    let iteration = 0;
-    const interval = setInterval(() => {
-      setText(
-        originalText
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) {
-              return originalText[index];
-            }
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("")
-      );
-
-      if (iteration >= originalText.length) {
-        clearInterval(interval);
-      }
-
-      iteration += 1 / 3;
-    }, 30);
+    gsap.to(imageRef.current, {
+      x: x * 0.05,
+      y: y * 0.05,
+      rotationY: x * 0.03,
+      rotationX: -y * 0.03,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
   };
 
-  const handleImageClick = () => {
-    setIsGlitching(true);
-    setTimeout(() => setIsGlitching(false), 1000);
+  const handleMouseLeave = () => {
+    gsap.to(imageRef.current, {
+      x: 0,
+      y: 0,
+      rotationY: 0,
+      rotationX: 0,
+      duration: 0.8,
+      ease: 'elastic.out(1, 0.5)'
+    });
   };
 
   return (
-    <div className="hero-container">
-      {/* Background particles */}
-      <div className="particles-bg">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            ref={el => particlesRef.current[i] = el}
-            className={`particle particle-${i + 1}`}
-          ></div>
+    <div className="hero-container-new">
+      {/* Animated Grid Background */}
+      <div className="animated-grid"></div>
+
+      {/* Data Streams */}
+      <div className="data-streams">
+        {dataStreams.map((stream) => (
+          <motion.div
+            key={stream.id}
+            className="data-stream"
+            style={{ left: stream.left }}
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: '100vh', opacity: [0, 1, 1, 0] }}
+            transition={{
+              duration: stream.duration,
+              delay: stream.delay,
+              repeat: Infinity,
+              ease: 'linear'
+            }}
+          >
+            {Array.from({ length: 5 }, (_, i) => (
+              <div key={i} className="data-bit">
+                {Math.random() > 0.5 ? '1' : '0'}
+              </div>
+            ))}
+          </motion.div>
         ))}
       </div>
 
-      {/* Main content */}
-      <div ref={containerRef} className="content-wrapper">
-        {/* Big background text */}
-        <div ref={bigTextRef} className="big-text-bg">
-          <span
-            className="big-text-line"
-            onMouseEnter={() => scrambleText(setText1, "MUJTABA")}
-          >
-            {text1}
-          </span>
-          <span
-            className="big-text-line"
-            onMouseEnter={() => scrambleText(setText2, "AHMAD")}
-          >
-            {text2}
-          </span>
-        </div>
+      {/* Main Content */}
+      <div className="hero-content-new">
 
-        {/* Center image */}
-        <div
-          className={`image-wrapper ${isGlitching ? 'glitch-active' : ''}`}
-          onClick={handleImageClick}
+        {/* Status Bar */}
+        <motion.div
+          className="status-bar"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <div className="image-glow"></div>
-          <img
-            ref={imageRef}
-            src={manimg}
-            alt="Mujtaba Ahmad"
-            className="hero-image"
-          />
-          <div className="image-border"></div>
+          <div className="status-item">
+            <div className="status-indicator active"></div>
+            <span>ONLINE</span>
+          </div>
+          <div className="status-item">
+            <div className="status-indicator"></div>
+            <span>v2.0.25</span>
+          </div>
+          <div className="status-item">
+            <div className="status-indicator scanning"></div>
+            <span>SCANNING...</span>
+          </div>
+        </motion.div>
+
+        {/* Image Container with Tech Frame */}
+        <div className="image-container-new">
+          {/* Animated Corner Brackets */}
+          <motion.div
+            className="corner-brackets"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            <div className="bracket top-left"></div>
+            <div className="bracket top-right"></div>
+            <div className="bracket bottom-left"></div>
+            <div className="bracket bottom-right"></div>
+          </motion.div>
+
+          {/* Scanning Line */}
+          <motion.div
+            className="scan-line"
+            animate={{
+              y: ['0%', '100%'],
+              opacity: [0, 1, 1, 0]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: 'linear'
+            }}
+          ></motion.div>
+
+          {/* Image */}
+          <motion.div
+            className="image-wrapper-new"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1, duration: 1, ease: 'easeOut' }}
+            onMouseMove={handleMouseMoveOnImage}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              ref={imageRef}
+              src={manimg}
+              alt="Mujtaba Ahmad"
+              className="hero-image-new"
+            />
+
+            {/* Hexagon Border */}
+            <div className="hex-border"></div>
+
+            {/* Glow Effect */}
+            <div className="image-glow-new"></div>
+          </motion.div>
+
+          {/* Tech Details */}
+          <motion.div
+            className="tech-details"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isTypingComplete ? 1 : 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="detail-line">
+              <span className="label">ID:</span>
+              <span className="value">DEV_2025_MA</span>
+            </div>
+            <div className="detail-line">
+              <span className="label">STATUS:</span>
+              <span className="value active-text">ACTIVE</span>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Subtitle and description */}
+        {/* Terminal Text Display */}
+        <motion.div
+          className="terminal-display"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        >
+          <div className="terminal-line">
+            <span className="prompt">{'>'}</span>
+            <span className="command">initialize_profile</span>
+          </div>
+          <div className="terminal-line name-line">
+            <span className="neon-text">{displayText}</span>
+            {displayText.length < fullName.length && <span className="cursor-blink">_</span>}
+          </div>
+          <div className="terminal-line role-line">
+            <span className="role-text">{displayRole}</span>
+            {displayRole.length > 0 && displayRole.length < role.length && (
+              <span className="cursor-blink">_</span>
+            )}
+          </div>
+          {isTypingComplete && (
+            <motion.div
+              className="terminal-line success-line"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="success-text">✓ Profile loaded successfully</span>
+            </motion.div>
+          )}
+        </motion.div>
 
-
-        {/* Overlay effects */}
-        <div ref={overlayRef} className="overlay-effects">
-          <div className="gradient-overlay"></div>
-          <div className="noise-overlay"></div>
-        </div>
       </div>
     </div>
   );
