@@ -1,4 +1,4 @@
-// Projects.jsx - Smooth Animated Stacking
+// Projects.jsx - Smooth Animated Stacking (Fixed for Vercel)
 import React, { useState, useRef } from "react";
 import { ExternalLink, Star, Calendar, Code, Palette, Smartphone } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
