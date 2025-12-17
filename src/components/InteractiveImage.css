@@ -271,7 +271,7 @@ body {
   
   .subtitle-wrapper {
     width: 90%;
-    padding: 1rem;
+  padding: 1rem;
   }
 }
 
@@ -280,4 +280,67 @@ body {
   .hero-container { background: white; }
   .big-text-line { -webkit-text-stroke: 2px black; }
   .hero-image { filter: none; }
+}
+
+/* --- NEW ANIMATIONS & EFFECTS --- */
+
+/* 1. Enhanced Grid Animation */
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+.hero-container {
+  animation: gridMove 20s linear infinite;
+}
+
+/* 2. Glitch Effect Keyframes */
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+  100% { clip-path: inset(30% 0 30% 0); transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+  20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+  40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 1px); }
+  60% { clip-path: inset(15% 0 80% 0); transform: translate(-1px, -2px); }
+  80% { clip-path: inset(55% 0 10% 0); transform: translate(1px, 2px); }
+  100% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 1px); }
+}
+
+/* Glitch Class to be toggled in JS */
+.glitch-active .hero-image {
+  animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+  filter: grayscale(0%) contrast(1.5) drop-shadow(4px 4px 0px var(--warning-red)) drop-shadow(-4px -4px 0px var(--neon-cyan));
+}
+
+.glitch-active .image-border {
+  animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+  border-color: var(--warning-red);
+}
+
+/* 3. Text Scramble Hover Effect Styles */
+.big-text-line {
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.big-text-line:hover {
+  color: rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* 4. Interactive Particles (Data Bits) */
+.data-bit {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background: var(--neon-green);
+  opacity: 0.6;
+  pointer-events: none;
 }

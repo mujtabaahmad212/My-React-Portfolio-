@@ -10,7 +10,13 @@ const InteractiveImage = () => {
   const subtitleRef = useRef(null);
   const overlayRef = useRef(null);
   const particlesRef = useRef([]);
+
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
+  const [text1, setText1] = useState("MUJTABA");
+  const [text2, setText2] = useState("AHMAD");
+
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+";
 
   useEffect(() => {
     const container = containerRef.current;
@@ -40,7 +46,7 @@ const InteractiveImage = () => {
         ease: "power3.out"
       })
       // Big text dramatic rise with rotation
-      .fromTo(bigText, 
+      .fromTo(bigText,
         {
           opacity: 0,
           scale: 0.8,
@@ -56,7 +62,7 @@ const InteractiveImage = () => {
           ease: "power4.out"
         }, "-=0.5")
       // Image spectacular entrance
-      .fromTo(image, 
+      .fromTo(image,
         {
           opacity: 0,
           scale: 0.6,
@@ -74,7 +80,7 @@ const InteractiveImage = () => {
           ease: "elastic.out(1, 0.8)"
         }, "-=1.2")
       // Subtitle elegant slide
-      .fromTo(subtitle, 
+      .fromTo(subtitle,
         {
           opacity: 0,
           y: 50,
@@ -103,7 +109,7 @@ const InteractiveImage = () => {
       const rect = container.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
+
       mouseX = (e.clientX - centerX) / rect.width;
       mouseY = (e.clientY - centerY) / rect.height;
 
@@ -138,12 +144,24 @@ const InteractiveImage = () => {
           duration: 1.4,
           ease: "power2.out"
         });
+
+        // Particle interaction
+        particlesRef.current.forEach((particle, i) => {
+          if (particle) {
+            gsap.to(particle, {
+              x: mouseX * (50 + i * 10),
+              y: mouseY * (50 + i * 10),
+              duration: 1 + i * 0.1,
+              ease: "power2.out"
+            });
+          }
+        });
       }
     };
 
     const handleMouseEnter = () => {
       isHovering = true;
-      
+
       gsap.to(image, {
         scale: 1.12,
         duration: 0.8,
@@ -160,7 +178,7 @@ const InteractiveImage = () => {
 
     const handleMouseLeave = () => {
       isHovering = false;
-      
+
       gsap.to([image, bigText, subtitle], {
         x: 0,
         y: 0,
@@ -177,6 +195,18 @@ const InteractiveImage = () => {
         duration: 1.5,
         ease: "power2.out"
       });
+
+      // Reset particles
+      particlesRef.current.forEach((particle) => {
+        if (particle) {
+          gsap.to(particle, {
+            x: 0,
+            y: 0,
+            duration: 2,
+            ease: "elastic.out(1, 0.4)"
+          });
+        }
+      });
     };
 
     // Touch support for mobile
@@ -186,7 +216,7 @@ const InteractiveImage = () => {
         const rect = container.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         const touchX = (touch.clientX - centerX) / rect.width;
         const touchY = (touch.clientY - centerY) / rect.height;
 
@@ -272,23 +302,58 @@ const InteractiveImage = () => {
       });
 
       // Subtitle gentle sway
-      gsap.to(subtitleRef.current, {
-        x: "+=3",
-        y: "+=2",
-        duration: 3.5,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1
-      });
+      if (subtitleRef.current) {
+        gsap.to(subtitleRef.current, {
+          x: "+=3",
+          y: "+=2",
+          duration: 3.5,
+          ease: "power1.inOut",
+          yoyo: true,
+          repeat: -1
+        });
+      }
     }
   }, [isLoaded]);
+
+  // Text Scramble Effect
+  const scrambleText = (setText, originalText) => {
+    let iteration = 0;
+    const interval = setInterval(() => {
+      setText(
+        originalText
+          .split("")
+          .map((letter, index) => {
+            if (index < iteration) {
+              return originalText[index];
+            }
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join("")
+      );
+
+      if (iteration >= originalText.length) {
+        clearInterval(interval);
+      }
+
+      iteration += 1 / 3;
+    }, 30);
+  };
+
+  const handleImageClick = () => {
+    setIsGlitching(true);
+    setTimeout(() => setIsGlitching(false), 1000);
+  };
 
   return (
     <div className="hero-container">
       {/* Background particles */}
       <div className="particles-bg">
         {[...Array(20)].map((_, i) => (
-          <div key={i} className={`particle particle-${i + 1}`}></div>
+          <div
+            key={i}
+            ref={el => particlesRef.current[i] = el}
+            className={`particle particle-${i + 1}`}
+          ></div>
         ))}
       </div>
 
@@ -296,16 +361,29 @@ const InteractiveImage = () => {
       <div ref={containerRef} className="content-wrapper">
         {/* Big background text */}
         <div ref={bigTextRef} className="big-text-bg">
-          <span className="big-text-line">MUJTABA</span>
-          <span className="big-text-line">AHMAD</span>
+          <span
+            className="big-text-line"
+            onMouseEnter={() => scrambleText(setText1, "MUJTABA")}
+          >
+            {text1}
+          </span>
+          <span
+            className="big-text-line"
+            onMouseEnter={() => scrambleText(setText2, "AHMAD")}
+          >
+            {text2}
+          </span>
         </div>
 
         {/* Center image */}
-        <div className="image-wrapper">
+        <div
+          className={`image-wrapper ${isGlitching ? 'glitch-active' : ''}`}
+          onClick={handleImageClick}
+        >
           <div className="image-glow"></div>
-          <img 
+          <img
             ref={imageRef}
-            src={manimg} 
+            src={manimg}
             alt="Mujtaba Ahmad"
             className="hero-image"
           />
@@ -313,7 +391,7 @@ const InteractiveImage = () => {
         </div>
 
         {/* Subtitle and description */}
-       
+
 
         {/* Overlay effects */}
         <div ref={overlayRef} className="overlay-effects">
@@ -321,8 +399,6 @@ const InteractiveImage = () => {
           <div className="noise-overlay"></div>
         </div>
       </div>
-
-      
     </div>
   );
 };
