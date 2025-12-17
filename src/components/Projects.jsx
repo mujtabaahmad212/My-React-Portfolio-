@@ -9,7 +9,8 @@ import todoImg from "../assets/images/projects img/todo-list-app.png";
 import ecommerceImg from "../assets/images/projects img/e-commerce.png";
 import devbazmImg from "../assets/images/projects img/Devbazm.png";
 import coffeeImg from "../assets/images/projects img/coffee-shop.png";
-import dCollectionImg from "../assets/images/projects img/d-collection.png";
+import DCollection from '../assets/images/projects-img/D Collection.png';
+
 import fruitCatcherImg from "../assets/images/projects img/fruit-catcher-game.png";
 import portfolioImg from "../assets/images/projects img/portfolio-website.png";
 
@@ -77,7 +78,7 @@ const projects = [
     description: "A personal brand of cosmetic, watches, perfumes, and medical product base selling website. Features product listings, shopping cart, and user classes.",
     category: "react",
     technologies: ["React", "E-commerce", "API", "CSS"],
-    image: dCollectionImg,
+    image:DCollection,
     liveLink: "https://d-collection.vercel.app/",
     featured: true,
     year: "2025"
