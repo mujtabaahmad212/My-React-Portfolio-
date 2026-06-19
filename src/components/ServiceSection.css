@@ -1,120 +1,127 @@
-/* ServiceSection.css - Theme: Terminal Services Grid */
-
-:root {
-  --bg-deep: #0a0a0a;
-  --bg-panel: #111111;
-  --neon-green: #00ff9d;
-  --neon-cyan: #00f3ff;
-  --grid-line: rgba(255, 255, 255, 0.05);
-  --text-main: #e0e0e0;
-  --text-sub: #888;
-  --font-tech: 'Courier New', monospace;
-  --tech-clip: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-}
+/* ServiceSection.css - Theme: Minimalist Grid Layout */
 
 .sec-service {
-  padding: 6rem 1.5rem;
-  background-color: var(--bg-deep);
+  padding: 8rem 2rem 6rem;
+  background-color: var(--color-primary, #222222);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-tech);
-  
+  font-family: var(--font-body, sans-serif);
+  position: relative;
+
   /* Background Grid */
-  background-image: 
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 30px 30px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .service-div {
-  max-width: 1200px;
+  max-width: 1100px;
   width: 100%;
 }
 
 .service-text {
   text-align: center;
-  margin-bottom: 4rem;
-  color: var(--text-main);
+  margin-bottom: 5rem;
+  color: var(--color-white, #FFFFFF);
 }
 
 .service-text h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   margin-bottom: 1rem;
-  color: var(--neon-green);
+  color: var(--color-white);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: -1px;
+  font-family: var(--font-heading);
+  font-weight: 800;
 }
 
 .service-text p {
-  font-size: 1rem;
-  color: var(--text-sub);
-  max-width: 700px;
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+  max-width: 600px;
   margin: 0 auto;
-  line-height: 1.7;
-  font-family: sans-serif; /* Readability */
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 .service-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
 .card {
-  background: var(--bg-panel);
-  border: 1px solid var(--grid-line);
-  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3rem 2.5rem;
   text-align: left;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Start with no shadow */
-  color: var(--text-main);
-  transition: all 0.3s ease;
+  box-shadow: none;
+  color: var(--color-white);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
-  
-  /* Tech clip-path shape */
-  clip-path: var(--tech-clip);
+  border-radius: 20px;
 }
 
 .card-icon {
-  color: var(--neon-cyan);
-  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 2rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-icon {
+  opacity: 1;
 }
 
 .card h1 {
-  font-size: 1.3rem;
-  color: var(--text-main);
-  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  color: var(--color-white);
+  margin-bottom: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: -0.5px;
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 .card p {
   font-size: 0.9rem;
-  color: var(--text-sub);
-  line-height: 1.6;
-  font-family: sans-serif;
-  min-height: 80px; /* Give cards a consistent height */
+  color: var(--color-tertiary);
+  line-height: 1.7;
+  min-height: 80px;
+  font-weight: 300;
 }
 
 /* Corner index number */
 .card-index {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  font-size: 0.9rem;
-  color: var(--text-sub);
-  opacity: 0.5;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
   .sec-service {
-    padding: 4rem 1rem;
+    padding: 6rem 1.5rem 4rem;
   }
+
+  .service-text {
+    margin-bottom: 3.5rem;
+  }
+
+  .card {
+    padding: 2.5rem 2rem;
+  }
+
   .card p {
-    min-height: auto; /* Remove min-height on mobile */
+    min-height: auto;
   }
 }
 
@@ -122,15 +129,8 @@
   .service-cards {
     grid-template-columns: 1fr;
   }
+
   .card {
     padding: 2rem;
-    text-align: center;
-  }
-  .card-icon {
-    margin: 0 auto 1.5rem auto;
-  }
-  .card-index {
-    bottom: 1rem;
-    right: 1rem;
   }
 }

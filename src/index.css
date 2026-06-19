@@ -1,1 +1,54 @@
 @import "tailwindcss";
+
+:root {
+  --color-primary: #222222;
+  --color-secondary: #7B7B7B;
+  --color-tertiary: #F8F8F8;
+  --color-white: #FFFFFF;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--color-primary);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-white);
+}
+
+/* Custom selection */
+::selection {
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+}
+
+/* Page transitions styling overrides */
+.transition-overlay {
+  background: var(--color-primary) !important;
+}

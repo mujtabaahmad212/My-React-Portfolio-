@@ -276,7 +276,7 @@ const Contact = () => {
       {/* Navigation & Contact Footer */}
       <footer className="nav-add" aria-label="Additional Contact and Navigation">
         <div className="addr">
-          <h3 style={{ color: '#f44e00', marginBottom: '1rem', fontSize: '1.2rem' }}>
+          <h3 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '1.2rem' }}>
             Get In Touch
           </h3>
           <p>

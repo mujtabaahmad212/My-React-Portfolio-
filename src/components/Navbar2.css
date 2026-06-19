@@ -1,15 +1,5 @@
-/* Navbar2.css - Theme: Cyber-Glass HUD */
+/* Navbar2.css - Minimalist Floating Pill HUD */
 
-:root {
-  --neon-green: #00ff9d;
-  --neon-cyan: #00f3ff;
-  --glass-bg: rgba(10, 10, 10, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --text-main: #e0e0e0;
-  --font-tech: 'Courier New', monospace;
-}
-
-/* Base Layout */
 .cyber-navbar {
   position: fixed;
   top: 0;
@@ -18,145 +8,167 @@
   z-index: 1000;
   padding: 1.5rem 2rem;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: var(--font-tech);
+  font-family: var(--font-heading, sans-serif);
 }
 
-/* Scrolled State: Compact glass bar */
+/* Scrolled State: floating glass pill */
 .cyber-navbar.scrolled {
-  padding: 0.8rem 2rem;
-  background: var(--glass-bg);
+  padding: 1rem 2rem;
+}
+
+.cyber-navbar.scrolled .navbar-content {
+  background: rgba(34, 34, 34, 0.75);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  padding: 0.6rem 2rem;
+  border-radius: 9999px;
 }
 
 .navbar-content {
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  transition: all 0.4s ease;
+  padding: 0.8rem 2rem;
+  border: 1px solid transparent;
 }
 
 /* --- Logo Styling --- */
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   text-decoration: none;
-  color: var(--text-main);
+  color: var(--color-white);
 }
 
 .logo-frame {
   position: relative;
-  width: 40px;
-  height: 40px;
-  /* Hexagon clip */
-  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
-  background: #222;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
-  border: 1px solid var(--neon-green);
+  border: 1px solid var(--color-secondary);
+  overflow: hidden;
 }
 
 .logo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.brand-logo:hover .logo-img {
+  filter: grayscale(0%);
+}
+
+.brand-logo:hover .logo-frame {
+  transform: rotate(15deg);
+  border-color: var(--color-white);
 }
 
 .brand-text {
-  font-size: 1.2rem;
-  font-weight: 900;
+  font-size: 1rem;
+  font-weight: 800;
   letter-spacing: 2px;
+  font-family: var(--font-heading);
 }
 
 .brand-dot {
-  color: var(--neon-green);
+  color: var(--color-white);
   animation: blink 2s infinite;
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50% { opacity: 0.2; }
 }
 
 /* --- Desktop Navigation --- */
 .desktop-nav {
   display: flex;
   list-style: none;
-  gap: 3rem;
+  gap: 2.5rem;
+  align-items: center;
 }
 
 .nav-link {
   position: relative;
-  color: #888;
+  color: var(--color-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   transition: color 0.3s ease;
+  padding: 0.4rem 0;
 }
 
-/* Active & Hover State: The Bracket Effect */
 .nav-link:hover,
 .nav-link.active {
-  color: var(--neon-cyan);
-  text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
+  color: var(--color-white);
 }
 
-.nav-link::before,
+/* Subtle line indicator underneath active/hover links */
 .nav-link::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: all 0.3s ease;
-  color: var(--neon-green);
-  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-white);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.nav-link::before { content: '['; left: -15px; }
-.nav-link::after { content: ']'; right: -15px; }
-
-.nav-link:hover::before,
-.nav-link.active::before { opacity: 1; left: -10px; }
 
 .nav-link:hover::after,
-.nav-link.active::after { opacity: 1; right: -10px; }
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
 /* --- Hamburger Menu Button --- */
 .menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 1002;
-  width: 40px;
+  width: 30px;
+  padding: 5px;
 }
 
 .bar {
   display: block;
   width: 100%;
   height: 2px;
-  background: var(--text-main);
+  background: var(--color-white);
   transition: all 0.3s ease;
 }
 
-.menu-toggle.active .top { transform: translateY(8px) rotate(45deg); background: var(--neon-green); }
+.menu-toggle.active .top { transform: translateY(7px) rotate(45deg); }
 .menu-toggle.active .mid { opacity: 0; }
-.menu-toggle.active .bot { transform: translateY(-8px) rotate(-45deg); background: var(--neon-green); }
+.menu-toggle.active .bot { transform: translateY(-7px) rotate(-45deg); }
 
-/* --- Mobile Overlay (The Matrix Style) --- */
+/* --- Mobile Overlay (Minimalist Dark Slide) --- */
 .mobile-overlay {
   position: fixed;
   inset: 0;
-  background: #050505;
+  background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,14 +183,13 @@
   pointer-events: all;
 }
 
-/* Grid lines on mobile background */
 .overlay-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(0, 255, 157, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 157, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
   z-index: -1;
 }
 
@@ -186,48 +197,47 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  text-align: left; /* Left align looks more 'list-like' */
+  gap: 1.8rem;
+  text-align: left;
   width: 100%;
-  padding-left: 15%; /* Indent slightly */
+  padding-left: 12%;
 }
 
 .mobile-list li {
-  transform: translateX(-50px);
+  transform: translateY(20px);
   opacity: 0;
   transition: all 0.4s ease;
 }
 
 .mobile-overlay.open .mobile-list li {
-  transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
 }
 
 .mobile-link {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-decoration: none;
-  color: transparent;
-  -webkit-text-stroke: 1px #555;
+  color: var(--color-secondary);
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 800;
   transition: all 0.3s ease;
   display: inline-block;
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
 }
 
 .link-index {
-  font-size: 1rem;
-  color: var(--neon-green);
+  font-size: 0.9rem;
+  color: var(--color-secondary);
   margin-right: 15px;
-  vertical-align: middle;
-  font-family: var(--font-tech);
+  font-family: var(--font-body);
+  font-weight: 400;
 }
 
 .mobile-link:hover,
 .mobile-link.active {
-  color: var(--text-main);
-  -webkit-text-stroke: 0px;
-  text-shadow: 4px 4px 0px var(--neon-green); /* Retro shadow */
-  transform: skewX(-10deg);
+  color: var(--color-white);
+  transform: translateX(10px);
 }
 
 /* --- Responsive Breakpoints --- */
@@ -235,4 +245,19 @@
   .desktop-nav { display: none; }
   .menu-toggle { display: flex; }
   .cyber-navbar { padding: 1rem 1.5rem; }
+  .cyber-navbar.scrolled .navbar-content {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0.8rem 0;
+    border-radius: 0;
+  }
+  .navbar-content {
+    background: rgba(34, 34, 34, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    padding: 0.6rem 1.5rem;
+  }
 }

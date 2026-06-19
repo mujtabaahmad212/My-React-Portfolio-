@@ -17,7 +17,7 @@ const AnimatedPage = ({ children }) => (
     initial="initial"
     animate="animate"
     exit="exit"
-    style={{ position: 'absolute', width: '100%', top: 0 }}
+    style={{ width: '100%', position: 'relative' }}
   >
     {/* The page content */}
     {children}
@@ -43,7 +43,7 @@ const AnimatedPage = ({ children }) => (
     />
     
     {/* We add the CSS for the overlay here.
-      It uses your theme's 'neon-green' variable.
+      It uses your theme's 'color-primary' variable.
     */}
     <style>{`
       .transition-overlay {
@@ -52,7 +52,7 @@ const AnimatedPage = ({ children }) => (
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: var(--neon-green, #00ff9d);
+        background: var(--color-primary, #222222);
         z-index: 9999;
         pointer-events: none;
       }

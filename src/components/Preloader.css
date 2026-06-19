@@ -9,8 +9,8 @@
   z-index: 10000; /* Ensure it's on top of everything */
 
   /* Theme */
-  background: var(--bg-deep, #0a0a0a);
-  font-family: var(--font-tech, 'Courier New', monospace);
+  background: var(--color-primary, #222222);
+  font-family: var(--font-heading, 'Outfit', sans-serif);
   
   /* Layout */
   display: flex;
@@ -21,12 +21,13 @@
 }
 
 .preloader-text {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  color: var(--neon-green, #00ff9d);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--color-white, #FFFFFF);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   text-align: center;
   padding: 0 1rem;
+  font-weight: 800;
 }
 
 /* This allows the text to wrap nicely on small screens */
@@ -35,16 +36,18 @@
 }
 
 .blinking-cursor {
-  color: var(--neon-green, #00ff9d);
+  color: var(--color-secondary, #7B7B7B);
   margin-left: 5px;
 }
 
 .preloader-subtext {
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  color: var(--text-sub, #888);
-  margin-top: 1rem;
-  letter-spacing: 1px;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+  color: var(--color-secondary, #7B7B7B);
+  margin-top: 1.5rem;
+  letter-spacing: 6px;
   text-transform: uppercase;
   text-align: center;
   padding: 0 1rem;
+  font-weight: 500;
+  font-family: var(--font-body, 'Inter', sans-serif);
 }

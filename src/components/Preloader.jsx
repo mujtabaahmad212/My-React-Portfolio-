@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import './Preloader.css';
 
 // The text to animate
-const text1 = "TRANSFORMING_IDEAS";
-const text2 = "INTO > DIGITAL_REALITY";
+const text1 = "MUJTABA_AHMAD";
+const text2 = "DEVELOPER  //  DESIGNER";
 
 // Variants for the container (staggers the children)
 const containerVariants = {

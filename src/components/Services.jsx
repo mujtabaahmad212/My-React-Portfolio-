@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ServiceSection.css';
 // UPDATED: Added Palette and Video icons
-import { Code, Zap, Shield, Palette, Video } from 'lucide-react'; 
+import { Code, Zap, Shield, Palette, Video } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,10 +51,10 @@ const ServiceSection = () => {
 
       const onMouseEnter = () => {
         gsap.to(card, {
-          scale: 1.03, 
-          rotation: 0,  
-          boxShadow: '0 0 40px rgba(0, 255, 157, 0.3)', 
-          borderColor: 'var(--neon-green)', 
+          scale: 1.03,
+          rotation: 0,
+          boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)',
+          borderColor: '#FFFFFF',
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -66,8 +66,8 @@ const ServiceSection = () => {
           rotation: 0,
           rotationX: 0,
           rotationY: 0,
-          boxShadow: '0 0 0 rgba(0, 0, 0, 0)', 
-          borderColor: 'var(--grid-line)', 
+          boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(255, 255, 255, 0.06)',
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -107,30 +107,30 @@ const ServiceSection = () => {
   // --- UPDATED SERVICES ---
   // Broken down from your skills list
   const services = [
-    { 
-      title: 'Web Development', 
+    {
+      title: 'Web Development',
       description: 'Building scalable applications using React, Node.js, and Express, from the server to the client.',
       icon: <Code size={40} />
     },
-    { 
-      title: 'Interactive UI Design', 
+    {
+      title: 'Interactive UI Design',
       description: 'Creating smooth, engaging user experiences with GSAP animations, Tailwind CSS, and modern design tools.',
       icon: <Zap size={40} />
     },
-    { 
-      title: 'Graphic Design', 
+    {
+      title: 'Graphic Design',
       description: 'Crafting visual identities, logos, and digital assets using Adobe Photoshop and modern design principles.',
       icon: <Palette size={40} />
     },
-    { 
-      title: 'Video Editing', 
+    {
+      title: 'Video Editing',
       description: 'Producing and editing high-quality video content for marketing, portfolios, or personal projects.',
       icon: <Video size={40} />
     },
-    { 
-      title: 'Cybersecurity & Systems', 
+    {
+      title: 'Cybersecurity & Systems',
       description: 'Actively learning ethical hacking principles, system administration, and network security with Linux & Kali.',
-      icon: <Shield size={40} /> 
+      icon: <Shield size={40} />
     },
   ];
 
@@ -138,10 +138,9 @@ const ServiceSection = () => {
     <div id="service" className="sec-service" ref={sectionRef}>
       <div className="service-div">
         <div className="service-text">
-          <h1>SERVICE_MATRIX</h1>
+          <h1>SERVICES</h1>
           <p>
-            // Core directives: Building high-performance, engaging, and
-            visually-striking web applications.
+            // Architecting high-performance, visually-engaging, and scalable digital solutions.
           </p>
         </div>
 

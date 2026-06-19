@@ -234,9 +234,9 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            PROJECT_ARCHIVE
+            SELECTED_PROJECTS
           </motion.h1>
-          <p className="subtitle">// Scroll to explore my work</p>
+          <p className="subtitle">// Selected works and experiments</p>
 
           <div className="filter-buttons">
             {filters.map((filter) => {
