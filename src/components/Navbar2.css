@@ -17,9 +17,7 @@
 }
 
 .cyber-navbar.scrolled .navbar-content {
-  background: rgba(34, 34, 34, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(34, 34, 34, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   padding: 0.6rem 2rem;
@@ -244,20 +242,24 @@
 @media (max-width: 900px) {
   .desktop-nav { display: none; }
   .menu-toggle { display: flex; }
-  .cyber-navbar { padding: 1rem 1.5rem; }
+  .cyber-navbar { padding: 0.75rem 1rem; }
+  
   .cyber-navbar.scrolled .navbar-content {
-    background: transparent;
-    backdrop-filter: none;
-    border: none;
-    box-shadow: none;
-    padding: 0.8rem 0;
-    border-radius: 0;
+    background: rgba(34, 34, 34, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
   }
+  
   .navbar-content {
-    background: rgba(34, 34, 34, 0.75);
-    backdrop-filter: blur(12px);
+    background: rgba(34, 34, 34, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 9999px;
-    padding: 0.6rem 1.5rem;
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 }
