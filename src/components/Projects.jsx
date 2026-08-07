@@ -142,7 +142,12 @@ const ProjectCard = ({ project, index, range, targetScale, progress }) => {
               className="image-wrapper"
               style={{ scale: imageScale, height: '100%' }}
             >
-              <img src={project.image} alt={project.title} />
+              <img
+                src={project.image}
+                alt={project.title}
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+              />
               <div className="image-gradient"></div>
             </motion.div>
 

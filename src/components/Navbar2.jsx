@@ -100,7 +100,7 @@ const Navbar2 = () => {
         {/* Logo Area */}
         <Link to="/" className="brand-logo" onClick={closeMobileMenu}>
           <div className="logo-frame">
-            <img src={mylogo} alt="Logo" className="logo-img" />
+            <img src={mylogo} alt="Logo" className="logo-img" draggable="false" onContextMenu={(e) => e.preventDefault()} />
           </div>
           <span className="brand-text">
             Mujtaba<span className="brand-dot">.</span>IO

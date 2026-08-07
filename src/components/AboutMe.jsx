@@ -161,6 +161,8 @@ const AboutMe = () => {
               src={aiPfp}
               alt="Mujtaba Ahmad"
               className="profile-img"
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
             />
             <h2>Mujtaba Ahmad</h2>
             <p className="title">Full Stack Developer & Designer</p>

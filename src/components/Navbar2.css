@@ -347,3 +347,23 @@
     padding: 0.55rem 1.25rem;
   }
 }
+
+@media (max-width: 480px) {
+  .cyber-navbar {
+    top: 0.75rem;
+    width: calc(100% - 1rem);
+  }
+
+  .navbar-content {
+    padding: 0.5rem 1rem;
+  }
+
+  .brand-text {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  .mobile-link {
+    font-size: 1.6rem;
+  }
+}

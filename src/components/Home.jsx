@@ -25,7 +25,7 @@ const Home = () => {
   };
 
   return (
-    <div className="homediv relative w-screen h-screen overflow-hidden hide-scrollbar">
+    <div className="homediv relative w-full h-screen overflow-hidden hide-scrollbar">
       {/* Background 3D AI Video */}
       <video
         ref={videoRef}
@@ -33,6 +33,11 @@ const Home = () => {
         loop
         muted
         playsInline
+        controlsList="nodownload no-noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        draggable="false"
+        onContextMenu={(e) => e.preventDefault()}
         onTimeUpdate={handleTimeUpdate}
         onSeeked={handleSeekedOrEnded}
         onEnded={handleSeekedOrEnded}
