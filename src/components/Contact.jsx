@@ -62,7 +62,7 @@ const Contact = () => {
     {
       id: 4,
       title: "GITHUB",
-      url: "https://github.com/mujtaba-ahmad",
+      url: "https://github.com/mujtabaahmad212",
      
     },
   ];

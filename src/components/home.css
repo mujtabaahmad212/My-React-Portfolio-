@@ -2,39 +2,51 @@
 
 .homediv {
   height: 100vh;
-  background:
-    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-    var(--color-primary, #222222);
+  height: 100dvh;
+  width: 100vw;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-primary, #0d0d11);
 }
 
-.homediv::before {
-  content: '';
+.home-bg-video {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.01) 50%, transparent 70%),
-    linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.01) 50%, transparent 70%);
-  pointer-events: none;
-  animation: subtle-float 20s ease-in-out infinite;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: filter 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes subtle-float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(0.5deg);
-  }
+.home-bg-video.video-blur-effect {
+  filter: blur(14px) brightness(0.6);
+}
+
+.video-loop-fade-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-loop-fade-overlay.active {
+  opacity: 1;
+}
+
+.home-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hide-scrollbar {
@@ -44,28 +56,4 @@
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-/* Loading animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.homediv>* {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-  .homediv::before {
-    animation: none !important;
-    transition: none !important;
-  }
 }

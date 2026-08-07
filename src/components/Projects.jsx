@@ -7,11 +7,11 @@ import "./Projects.css";
 import simsImg from "../assets/images/projects img/SIMS.png";
 import todoImg from "../assets/images/projects img/todo-list-app.png";
 import ecommerceImg from "../assets/images/projects img/e-commerce.png";
-import devbazmImg from "../assets/images/projects img/Devbazm.png";
+import devbazmImg from "../assets/images/projects img/devbazm copy.png";
 import coffeeImg from "../assets/images/projects img/coffee-shop.png";
 import dCollectionImg from "../assets/images/projects img/d-collection.png";
 import fruitCatcherImg from "../assets/images/projects img/fruit-catcher-game.png";
-import portfolioImg from "../assets/images/projects img/portfolio-website.png";
+import portfolioImg from "../assets/images/projects img/orbiion ss web.png";
 
 
 const projects = [
@@ -22,21 +22,21 @@ const projects = [
     category: "react",
     technologies: ["React", "Node.js", "Firebase", "API"],
     image: devbazmImg,
-    liveLink: "https://orbizion.vercel.app/",
+    liveLink: "https://devbazm.vercel.app/devbazm",
     featured: true,
     year: "2025"
   },
   {
     id: 7,
-    title: "My Portfolio Website",
-    description: "A modern, highly interactive portfolio website features 3D elements, smooth animations, and a responsive design to showcase projects and skills.",
+    title: "Orbizion",
+    description: "A modern, highly interactive website For  a real company Orbizion, WebSite Features   interactive animations, and a responsive design to showcase projects and skills.",
     category: "react",
     technologies: ["React", "Three.js", "Framer Motion", "GSAP"],
     image: portfolioImg,
-    liveLink: "https://my-react-portfolio-953v.vercel.app/",
-    repoLink: "https://github.com/mujtabaahmad212/My-React-Portfolio-",
+    liveLink: "https://orbizion.vercel.app/",
+   
     featured: true,
-    year: "2025"
+    year: "2026"
   },
   {
     id: 1,

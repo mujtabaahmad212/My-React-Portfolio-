@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #222222;
-  --color-secondary: #7B7B7B;
-  --color-tertiary: #F8F8F8;
-  --color-white: #FFFFFF;
+  --color-primary: #07070a;
+  --color-secondary: #cbd5e1;
+  --color-tertiary: #f1f5f9;
+  --color-white: #ffffff;
+  --color-glass-bg: rgba(255, 255, 255, 0.07);
+  --color-glass-border: rgba(255, 255, 255, 0.22);
+  --color-glass-glow: rgba(255, 255, 255, 0.12);
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -23,29 +26,61 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
+/* --- Crystalline White Glassmorphism Utilities --- */
+.white-glass-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.white-glass-pill {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08) !important;
+}
+
+.white-glass-btn {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.white-glass-btn:hover {
+  background: #ffffff !important;
+  color: #07070a !important;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3) !important;
+}
+
 /* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: var(--color-primary);
+  background-color: #07070a;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--color-primary);
+  background-color: #07070a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-secondary);
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Custom selection */
 ::selection {
-  background-color: var(--color-tertiary);
-  color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 /* Page transitions styling overrides */

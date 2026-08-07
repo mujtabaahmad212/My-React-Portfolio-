@@ -122,16 +122,9 @@ const ServiceSection = () => {
       description: 'Crafting visual identities, logos, and digital assets using Adobe Photoshop and modern design principles.',
       icon: <Palette size={40} />
     },
-    {
-      title: 'Video Editing',
-      description: 'Producing and editing high-quality video content for marketing, portfolios, or personal projects.',
-      icon: <Video size={40} />
-    },
-    {
-      title: 'Cybersecurity & Systems',
-      description: 'Actively learning ethical hacking principles, system administration, and network security with Linux & Kali.',
-      icon: <Shield size={40} />
-    },
+  
+    
+ 
   ];
 
   return (

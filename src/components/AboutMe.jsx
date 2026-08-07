@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './AboutMe.css';
-import me from '../assets/images/mepng.png';
+import aiPfp from '../assets/images/ai pfp my.jpeg';
 
 const AboutMe = () => {
   const aboutRef = useRef(null);
@@ -71,7 +71,7 @@ const AboutMe = () => {
       ]
     },
     {
-      role: "TEAM AUDITOR",
+      role: "TEAM ASSISTANT",
       company: "Arfa Karim Technology Incubator",
       period: "Aug 2025 – Jan 2026",
       bullets: [
@@ -158,12 +158,14 @@ const AboutMe = () => {
           <div className="profile-section">
             <img
               ref={profileImgRef}
-              src={me}
+              src={aiPfp}
               alt="Mujtaba Ahmad"
               className="profile-img"
             />
             <h2>Mujtaba Ahmad</h2>
             <p className="title">Full Stack Developer & Designer</p>
+
+
 
             <div className="contact-section">
               <h3>// CONNECT</h3>

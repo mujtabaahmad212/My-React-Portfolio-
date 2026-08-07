@@ -1,11 +1,12 @@
-/* Contact.css - Premium Monochrome Connect Section */
+/* Contact.css - Crystalline White Glass Connect Section */
 
 .main {
-  background-color: var(--color-primary, #222222);
+  background-color: var(--color-primary, #07070a);
   width: 100%;
   min-height: 100vh;
   position: relative;
   font-family: var(--font-body, sans-serif);
+  overflow: hidden;
 }
 
 /* Contact Hero Section */
@@ -19,26 +20,16 @@
   position: relative;
   overflow: hidden;
 
-  /* Background Grid */
+  /* Ambient Crystalline Backdrop Grid & Light Flares */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.connect::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-  z-index: 1;
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.06) 0%, transparent 65%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
 }
 
 .contact2 {
-  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-secondary) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.65) 60%, rgba(255, 255, 255, 0.3) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -52,6 +43,7 @@
   line-height: 0.9;
   position: relative;
   z-index: 2;
+  filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.1));
 }
 
 .contactmeon {
@@ -83,19 +75,22 @@
   font-weight: 700;
   position: relative;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 0.8rem 1.8rem;
+  padding: 0.85rem 2rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .sociallinks2 a:hover {
-  color: var(--color-primary);
-  background: var(--color-white);
-  border-color: var(--color-white);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+  color: #07070a;
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
 }
 
 /* Call to Action Section */
@@ -105,10 +100,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-primary);
+  background-color: transparent;
   padding: 4rem 2rem;
   position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .main-call::before {
@@ -116,19 +111,21 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   background-size: 30px 30px;
   pointer-events: none;
 }
 
 .bookCall {
   padding: 4.5rem 3rem;
-  background: #2a2a2a;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
   width: 100%;
-  max-width: 800px;
-  border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  max-width: 880px;
+  border-radius: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,7 +133,7 @@
   text-align: center;
   position: relative;
   z-index: 2;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.7), inset 0 1.5px 0 rgba(255, 255, 255, 0.25);
 }
 
 .bookCallp1 {
@@ -152,7 +149,7 @@
 .bookCallh1 {
   color: var(--color-white);
   font-size: clamp(1.8rem, 4vw, 3.2rem);
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1.25;
   text-transform: uppercase;
   font-family: var(--font-heading), sans-serif;
@@ -171,26 +168,26 @@
 }
 
 .bookwa {
-  color: var(--color-primary);
+  color: #07070a;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   font-family: var(--font-heading), sans-serif;
   background: var(--color-white);
-  padding: 1.2rem 2.5rem;
+  padding: 1.25rem 2.8rem;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
   display: inline-block;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 1.5px;
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
 .bookwa:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
-  background: var(--color-tertiary);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(255, 255, 255, 0.35);
+  background: #ffffff;
 }
 
 .bookwa:active {
@@ -199,13 +196,15 @@
 
 /* Navigation & Address Section */
 .nav-add {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 4rem 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .addr {
@@ -225,11 +224,11 @@
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .addr a:hover {
-  border-bottom-color: var(--color-white);
+  border-bottom-color: #ffffff;
 }
 
 .navi nav {
@@ -262,7 +261,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   background-color: var(--color-white);
   transform: scaleX(0);
   transform-origin: right;
@@ -299,7 +298,7 @@
 
   .bookCall {
     padding: 3rem 2rem;
-    border-radius: 24px;
+    border-radius: 28px;
   }
 
   .nav-add {
